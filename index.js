@@ -55,32 +55,34 @@ class Esfera {
 }
 
 const mostrar_esfera_caso = (caso, radio_esfera, carga_esfera, radio_gaus) => {
-  const EO = 8.8541878176;
+  const EO = 8.854187817 * Math.pow(10, -12);
+  const PI = 3.141592654;
   let $resultado = document.querySelector("#resultado");
 
   if (caso == 1) {
     let esfera_padre_caso1 = new Esfera([2, 32, 32], 0xffff00);
     esfera_padre_caso1.insertar_escena();
     esfera_padre_caso1.animar();
+    console.log("holaaaaaaaaaaaa");
 
     let esfera_hija_caso1 = new Esfera([1, 32, 32], 0xffffff);
     esfera_hija_caso1.agregar_esfera_hija(esfera_padre_caso1.esfera);
 
     let operacion =
-      ((1 / (4 * Math.PI * EO)) * (carga_esfera * Math.pow(10, -6))) /
-      (radio_esfera * radio_esfera);
+      ((1 / (4 * PI * EO)) * (carga_esfera * Math.pow(10, -6))) /
+      (radio_gaus * radio_gaus);
     $resultado.innerHTML = operacion + "(N/C)*m²";
   } else if (caso == 2) {
     let esfera_padre_caso2 = new Esfera([2, 32, 32], 0xffffff);
     esfera_padre_caso2.insertar_escena();
     esfera_padre_caso2.animar();
-
+    console.log("hola");
     let esfera_hija_caso2 = new Esfera([1, 32, 32], 0xffff00);
     esfera_hija_caso2.agregar_esfera_hija(esfera_padre_caso2.esfera);
 
     let operacion =
-      ((carga_esfera * Math.pow(10, -6)).toFixed(6) * radio_esfera) /
-      (4 * Math.PI * EO * radio_gaus * radio_gaus * radio_gaus);
+      (carga_esfera * Math.pow(10, -6) * radio_gaus) /
+      (4 * PI * EO * radio_esfera ** 3);
     $resultado.innerHTML = operacion + "(N/C)*m²";
   } else {
     let esfera_padre_caso3 = new Esfera([2, 32, 32], 0xffff99);
@@ -91,8 +93,8 @@ const mostrar_esfera_caso = (caso, radio_esfera, carga_esfera, radio_gaus) => {
     esfera_hija_caso3.agregar_esfera_hija(esfera_padre_caso3.esfera);
 
     let operacion =
-      (carga_esfera * Math.pow(10, -6) * radio_esfera) /
-      (4 * Math.PI * EO * radio_gaus * radio_gaus * radio_gaus);
+      (carga_esfera * Math.pow(10, -6) * radio_gaus) /
+      (4 * PI * EO * radio_esfera ** 3);
     $resultado.innerHTML = operacion + "(N/C)*m²";
   }
 };
@@ -111,8 +113,8 @@ document.querySelector("#formulario").addEventListener("submit", (e) => {
 
   console.log(carga_esfera + 10, carga_esfera * 10, carga_esfera / 2);
 
-  if (radio_esfera > radio_gaus) caso = 1;
-  if (radio_esfera < radio_gaus) caso = 2;
+  if (radio_gaus > radio_esfera) caso = 1;
+  if (radio_gaus < radio_esfera) caso = 2;
   if (radio_esfera == radio_gaus) caso = 3;
 
   esferas_array.forEach((esfera) => {
