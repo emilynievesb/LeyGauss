@@ -1,0 +1,83 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: monospace;
+}
+
+body{
+    overflow-x: hidden;
+}
+
+.container{
+    width: 100%;
+    height: 100vh;
+    flex-direction: row-reverse;
+}
+
+.simulacion{
+    width: 75%;
+    height: 100vh;
+}
+.formulario{
+    background-color: rgba(24, 24, 128, 0.856);
+    padding: 0px 20px 0px 20px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s;
+}
+
+img{
+    width: 150px;
+    height: 150px;
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+}
+
+.formulario h1{
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.formulario {
+    height: 100vh;
+}
+
+@media (max-width: 1100px) {
+img{
+    display: none;
+}
+.container{
+    display: block;
+}
+.simulacion {
+    width: 100%;
+    height: auto;
+}
+}
+
+.esfera_contenedor{
+    width: 100%;
+    height: 100vh;
+}
+
+.btn{
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    text-align: center;
+    width: 100%;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.btn:hover{
+    background-color: rgb(189, 208, 218);
+}
+
+body{
+    overflow-y: hidden;
+}
